@@ -5,13 +5,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.ohj2.ipetresx.todo.MainController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Label fx:id="taskList" wrapText="true" />
+   <VBox fx:id="pendingTasks" prefHeight="200.0" prefWidth="100.0">
+      <children>
+         <Label prefHeight="25.0" prefWidth="200.0" text="Pending Tasks:" textAlignment="CENTER">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Label>
+      </children>
+   </VBox>
+   <VBox fx:id="completedTasks" prefHeight="200.0" prefWidth="100.0">
+      <children>
+         <Label prefHeight="25.0" prefWidth="156.0" text="Completed Tasks:">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Label>
+      </children>
+   </VBox>
    <TextField fx:id="newTaskName" />
     <Button fx:id="addNewTaskButton" text="Add Task" wrapText="true" />
 </VBox>
