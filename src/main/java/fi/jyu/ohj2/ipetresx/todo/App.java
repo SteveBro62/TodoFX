@@ -14,8 +14,10 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
         Scene scene = new Scene(loader.load());
 
+        stage.setMinWidth(400);
+        stage.setMinHeight(400);
         stage.setScene(scene);
-        stage.setTitle("MyApp");
+        stage.setTitle("Todo list");
         stage.show();
     }
 
