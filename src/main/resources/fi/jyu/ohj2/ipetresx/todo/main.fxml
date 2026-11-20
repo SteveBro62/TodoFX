@@ -2,32 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="10.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.ohj2.ipetresx.todo.MainController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Label fx:id="pendingLabel" prefHeight="25.0" prefWidth="200.0" text="Pending Tasks:" textAlignment="CENTER">
-      <font>
-         <Font size="15.0" />
-      </font>
-   </Label>
-   <VBox fx:id="pendingTasks" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
-   <Label fx:id="completedLabel" prefHeight="25.0" prefWidth="156.0" text="Completed Tasks:">
-      <font>
-         <Font size="15.0" />
-      </font>
-   </Label>
-   <VBox fx:id="completedTasks" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
-   <HBox prefHeight="100.0" prefWidth="200.0">
+   <TableView fx:id="taskTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+   <HBox prefHeight="26.0" prefWidth="360.0" VBox.vgrow="NEVER">
       <children>
-          <Button fx:id="addNewTaskButton" text="Add Task" wrapText="true" HBox.hgrow="NEVER" />
          <TextField fx:id="newTaskName" HBox.hgrow="ALWAYS" />
+          <Button fx:id="addNewTaskButton" text="Add Task" wrapText="true" HBox.hgrow="NEVER" />
       </children>
    </HBox>
+   <Button fx:id="deleteTaskButton" prefHeight="26.0" prefWidth="119.0" text="Delete Task" wrapText="true" />
 </VBox>
