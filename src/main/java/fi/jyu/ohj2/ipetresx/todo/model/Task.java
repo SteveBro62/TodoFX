@@ -1,4 +1,4 @@
-package fi.jyu.ohj2.ipetresx.todo;
+package fi.jyu.ohj2.ipetresx.todo.model;
 
 import javafx.beans.property.*;
 

@@ -1,9 +1,11 @@
-package fi.jyu.ohj2.ipetresx.todo;
+package fi.jyu.ohj2.ipetresx.todo.controller;
 
 import java.util.Comparator;
 import java.util.List;
 import java.nio.file.*;
 
+import fi.jyu.ohj2.ipetresx.todo.model.Task;
+import fi.jyu.ohj2.ipetresx.todo.model.TaskCollection;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -28,24 +30,13 @@ public class MainController implements Initializable {
     @FXML
     private TableView <Task> taskTable;
 
-    private Path path;
-
-    private ObservableList<Task> tasks
-            = FXCollections.observableArrayList(task -> new Observable[] {task.isDoneProperty()});
+    private TaskCollection taskCollection = new TaskCollection();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SortedList<Task> sortedTasks = tasks.sorted(Comparator.comparing(Task::getIsDone));
+        SortedList<Task> sortedTasks = taskCollection.getTasks().sorted(Comparator.comparing(Task::getIsDone));
         taskTable.setItems(sortedTasks);
-        tasks.addListener((ListChangeListener<Task>) change -> {
-            save();
-        });
         setTable();
-        path = Path.of("tasks.json");
-        try {
-            tasks.addAll(load());
-        }
-        catch (Exception _){}
         newTaskName.setText("");
         addNewTaskButton.setOnAction(event -> {
             addTask();
@@ -76,25 +67,17 @@ public class MainController implements Initializable {
     private void deleteSelected(){
         Task task = taskTable.getSelectionModel().getSelectedItem();
         if(task != null)
-            tasks.remove(task);
+            taskCollection.removeTask(task);
     }
 
-    private List<Task> load(){
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(path.toFile(), new TypeReference<List<Task>>(){});
-    }
 
-    private void save(){
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(path.toFile(), tasks);
-    }
 
     private void addTask(){
         String text = newTaskName.getText();
         newTaskName.requestFocus();
         if(text == null || text.isBlank())
             return;
-        tasks.add(new Task(text, false));
+        taskCollection.addTask(text);
         newTaskName.setText("");
     }
 }
