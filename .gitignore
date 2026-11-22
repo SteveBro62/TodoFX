@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 .kotlin
 tasks.json
+testtasks.json
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

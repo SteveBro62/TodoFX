@@ -31,6 +31,15 @@ public class TaskCollection {
         });
     }
 
+    public TaskCollection(Path path){
+        this.path = path;
+        load();
+        saver.setOnFinished(event -> save());
+        tasks.addListener((ListChangeListener<Task>) change -> {
+            saver.playFromStart();
+        });
+    }
+
     private void load(){
         try {
             tasks.addAll(mapper.readValue(path.toFile(), new TypeReference<List<Task>>() {}));
