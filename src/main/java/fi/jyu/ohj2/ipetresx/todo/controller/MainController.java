@@ -8,6 +8,7 @@ import java.nio.file.*;
 import fi.jyu.ohj2.ipetresx.todo.App;
 import fi.jyu.ohj2.ipetresx.todo.model.Task;
 import fi.jyu.ohj2.ipetresx.todo.model.TaskCollection;
+import fi.jyu.ohj2.ipetresx.todo.persistance.JsonTaskRepository;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -38,7 +39,7 @@ public class MainController implements Initializable {
     @FXML
     private TableView <Task> taskTable;
 
-    private TaskCollection taskCollection = new TaskCollection();
+    private TaskCollection taskCollection = new TaskCollection(new JsonTaskRepository(Path.of("tasks.json")));
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
